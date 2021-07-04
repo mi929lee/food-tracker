@@ -1,0 +1,15 @@
+/* @import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"; */
+@import 'bulma/css/bulma.css';
+
+.navbar {
+  padding: 60px;
+}
+
+.field {
+  margin: 30px;
+}
+
+img {
+  max-width: 20%;
+  height: auto;
+}
