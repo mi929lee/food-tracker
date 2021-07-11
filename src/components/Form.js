@@ -27,6 +27,7 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
   const [units, setUnits] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
+  const [location, setLocation] = useState("");
   const [whoBuys, setWhoBuys] = useState("");
   const [whereBuy, setWhereBuy] = useState("");
   const [notes, setNotes] = useState("");
@@ -73,6 +74,9 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
           </div>
         )}
         <div className="column is-half py-0">
+          <FormItem title="price" placeholder="ex: $3.99" id="price" handleChange={setPrice} />
+        </div>
+        <div className="column is-half py-0">
           <FormItem title="quantity" placeholder="ex: 2" id="quantity" handleChange={setQuantity} />
         </div>
         <div className="column is-half py-0">
@@ -81,26 +85,42 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
         <div className="column is-half py-0">
           <FormItem title="type" placeholder="ex: snacks" id="type" handleChange={setType} />
         </div>
+        
         <div className="column is-half py-0">
-          <FormItem title="notes" placeholder="ex: get the family size" id="notes" handleChange={setNotes} />
+          <div className="control mb-5">
+            <label className="label">image</label>
+            <div className="file">
+              <label className="file-label">
+                <input type="file" className="file-input"/>
+                <span className="file-cta">
+                  {/* <span className="file-icon">
+                    <i className="fas fa-upload"></i>
+                  </span> */}
+                  <span className="file-label">select an image</span>
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
+          
+
         {list === "need to buy" && (
           <div className="column is-half py-0">
-            <FormItem title="where to buy" placeholder="ex: safeway" id="where-to-buy" />
+            <FormItem title="where to buy" placeholder="ex: safeway" id="where-to-buy" handleChange={setWhereBuy}/>
           </div>
         )}
         {list === "need to buy" && (
           <div className="column is-half py-0">
-            <FormItem title="who buys" placeholder="ex: michelle" id="who-buy" />
+            <FormItem title="who buys" placeholder="ex: michelle" id="who-buy" handleChange={setWhoBuys}/>
           </div>
         )}
         {list === "owned" && (
           <div className="column is-half py-0">
-            <FormItem title="location" placeholder="ex: in front of the white TV" id="location" />
+            <FormItem title="location" placeholder="ex: in front of the white TV" id="location" handleChange={setLocation}/>
           </div>
         )}
         <div className="column is-half py-0">
-          <FormItem title="price" placeholder="ex: $3.99" id="price" handleChange={setType} />
+          <FormItem title="notes" placeholder="ex: get the family size" id="notes" handleChange={setNotes} />
         </div>
 
         <div className="column is-half py-0">
