@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const FormItem = ({ tag, id, handleChange }) => (
+const FormItem = ({ title, placeholder, id, handleChange }) => (
   <div className="control">
-    <label className="label">{tag}</label>
+    <label className="label">{title}</label>
     <div className="has-icons-left">
       <input
         className="input"
         type="text"
-        placeholder={tag}
+        placeholder={placeholder}
         id={id}
         onChange={(e) => handleChange(e.target.value)}
       />
@@ -19,11 +19,17 @@ const FormItem = ({ tag, id, handleChange }) => (
 );
 
 const Form = ({ addOwnedItem, addBuyItem }) => {
+  const [list, setList] = useState("need to buy");
   const [name, setName] = useState("");
   const [expiration, setExpiration] = useState("");
+  const [dateNeeded, setDateNeeded] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [units, setUnits] = useState("");
+  const [price, setPrice] = useState("");
   const [type, setType] = useState("");
-  const [list, setList] = useState("need to buy");
+  const [whoBuys, setWhoBuys] = useState("");
+  const [whereBuy, setWhereBuy] = useState("");
+  const [notes, setNotes] = useState("");
 
   return (
     <div className="field" id="add-item">
@@ -32,28 +38,6 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
       <br />
       <br />
       <div className="columns is-multiline">
-        <div className="column is-half py-0">
-          <FormItem tag="name of item" id="name" handleChange={setName} />
-        </div>
-        <div className="column is-half py-0">
-          <FormItem
-            tag="expiration date"
-            id="expiration"
-            handleChange={setExpiration}
-          />
-        </div>
-        <div className="column is-half py-0">
-          <FormItem tag="quantity" id="quantity" handleChange={setQuantity} />
-        </div>
-        <div className="column is-half py-0">
-          <FormItem tag="type" id="type" handleChange={setType} />
-        </div>
-        <div className="column is-half py-0">
-          <FormItem tag="where to buy" id="where-to-buy" />
-        </div>
-        <div className="column is-half py-0">
-          <FormItem tag="who buys" id="who-buy" />
-        </div>
         <div className="column is-half py-0">
           <div className="control">
             <label className="label">list to add item to</label>
@@ -65,6 +49,60 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
             </div>
           </div>
         </div>
+        <div className="column is-half py-0">
+          <FormItem title="name of item" placeholder="ex: cheerios" id="name" handleChange={setName} />
+        </div>
+        {list === "owned" && (
+          <div className="column is-half py-0">
+            <FormItem
+              title="expiration date"
+              placeholder="ex: 2022-05-31"
+              id="expiration"
+              handleChange={setExpiration}
+            />
+          </div>
+        )}
+        {list === "need to buy" && (
+          <div className="column is-half py-0">
+            <FormItem
+              title="date needed by"
+              placeholder="ex: 2021-07-31"
+              id="date-needed"
+              handleChange={setDateNeeded}
+            />
+          </div>
+        )}
+        <div className="column is-half py-0">
+          <FormItem title="quantity" placeholder="ex: 2" id="quantity" handleChange={setQuantity} />
+        </div>
+        <div className="column is-half py-0">
+          <FormItem title="units" placeholder="ex: boxes" id="units" handleChange={setUnits} />
+        </div>
+        <div className="column is-half py-0">
+          <FormItem title="type" placeholder="ex: snacks" id="type" handleChange={setType} />
+        </div>
+        <div className="column is-half py-0">
+          <FormItem title="notes" placeholder="ex: get the family size" id="notes" handleChange={setNotes} />
+        </div>
+        {list === "need to buy" && (
+          <div className="column is-half py-0">
+            <FormItem title="where to buy" placeholder="ex: safeway" id="where-to-buy" />
+          </div>
+        )}
+        {list === "need to buy" && (
+          <div className="column is-half py-0">
+            <FormItem title="who buys" placeholder="ex: michelle" id="who-buy" />
+          </div>
+        )}
+        {list === "owned" && (
+          <div className="column is-half py-0">
+            <FormItem title="location" placeholder="ex: in front of the white TV" id="location" />
+          </div>
+        )}
+        <div className="column is-half py-0">
+          <FormItem title="price" placeholder="ex: $3.99" id="price" handleChange={setType} />
+        </div>
+
         <div className="column is-half py-0">
           <button
             type="submit"
