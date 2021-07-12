@@ -1,4 +1,4 @@
-const OwnedList = ({ rows }) => (
+const OwnedList = ({ rows, deleteOwned }) => (
   <div>
     <h2 className="is-size-3 has-text-weight-semibold">owned</h2>
     <table className="table is-hoverable">
@@ -12,7 +12,7 @@ const OwnedList = ({ rows }) => (
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx}>
+          <tr key={idx} onClick={() => {deleteOwned(row.name)}}>
             <td>{row.name}</td>
             <td>{row.expiration}</td>
             <td>{row.qty}</td>

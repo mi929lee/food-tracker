@@ -1,4 +1,4 @@
-const BuyList = ({ rows }) => (
+const BuyList = ({ rows, deleteBuy }) => (
   <div>
     <h2 className="is-size-3 has-text-weight-semibold">need to buy</h2>
     <table className="table is-hoverable">
@@ -12,7 +12,7 @@ const BuyList = ({ rows }) => (
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx}>
+          <tr key={idx} onClick={() => {deleteBuy(row.name)}}>
             <td>{row.name}</td>
             <td>{row.expiration}</td>
             <td>{row.qty}</td>

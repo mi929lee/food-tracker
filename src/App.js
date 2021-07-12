@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Form from "./components/Form";
 import Header from "./components/Header";
 import OwnedList from "./components/OwnedList";
+import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
   const [ownedItems, setOwnedItems] = useState([
@@ -12,18 +13,21 @@ const App = () => {
       expiration: "2021-06-31",
       qty: "1",
       type: "snacks",
+      idx: 0
     },
     {
       name: "cheerois",
       expiration: "2021-03-14",
       qty: "9",
       type: "snacks",
+      idx: 1
     },
     {
       name: "cheerois",
       expiration: "2021-03-14",
       qty: "9",
       type: "snacks",
+      idx: 2
     },
   ]);
 
@@ -51,6 +55,19 @@ const App = () => {
   const addOwnedItem = (row) => setOwnedItems([...ownedItems, row]);
   const addBuyItem = (row) => setBuyItems([...buyItems, row]);
 
+  const deleteOwned = (name) => {
+    const rows = ownedItems.filter(item => {
+      return name !== item.name
+    });
+    setOwnedItems(rows);
+  };
+  const deleteBuy = (name) => {
+    const rows = buyItems.filter(item => {
+      return name !== item.name
+    });
+    setBuyItems(rows);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -58,10 +75,10 @@ const App = () => {
       <section className="section">
         <div className="columns">
           <div className="column">
-            <OwnedList rows={ownedItems} />
+            <OwnedList rows={ownedItems} deleteOwned={deleteOwned} />
           </div>
           <div className="column">
-            <BuyList rows={buyItems} />
+            <BuyList rows={buyItems} deleteBuy={deleteBuy} />
           </div>
         </div>
       </section>
