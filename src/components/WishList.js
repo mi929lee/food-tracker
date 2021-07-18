@@ -1,4 +1,4 @@
-const BuyList = ({ rows, deleteBuy }) => (
+const WishList = ({ rows, deleteWishItem }) => (
   <div>
     <h2>need to buy</h2>
     <table className="table table-hover">
@@ -12,11 +12,11 @@ const BuyList = ({ rows, deleteBuy }) => (
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx} onClick={() => {deleteBuy(row.name)}}>
-            <td>{row.name}</td>
-            <td>{row.expiration}</td>
-            <td>{row.qty}</td>
-            <td>{row.type}</td>
+          <tr key={idx} onClick={() => {deleteWishItem(row.name)}}>
+            <td>{row.title}</td>
+            <td>{row.date}</td>
+            <td>{row.quantity}</td>
+            <td>{row.tags}</td>
           </tr>
         ))}
       </tbody>
@@ -24,4 +24,4 @@ const BuyList = ({ rows, deleteBuy }) => (
   </div>
 );
 
-export default BuyList;
+export default WishList;

@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import Accordion from "react-bootstrap/Accordion";
 
 const FormItem = ({ title, placeholder, id, handleChange }) => (
   <div className="input-group mb-3">
@@ -14,7 +13,7 @@ const FormItem = ({ title, placeholder, id, handleChange }) => (
   </div>
 );
 
-const Form = ({ addOwnedItem, addBuyItem }) => {
+const Form = ({ addInventoryItem, addWishItem }) => {
   const [list, setList] = useState("need to buy");
   const [name, setName] = useState("");
   const [expiration, setExpiration] = useState("");
@@ -172,33 +171,28 @@ const Form = ({ addOwnedItem, addBuyItem }) => {
         </div>
       </div>
 
-      {/* <div className="row">
-        <div className="col float-end"> */}
-          <button
-            type="submit"
-            className="btn btn-danger float-end me-4"
-            id="submit"
-            onClick={() =>
-              list === "owned"
-                ? addOwnedItem({
-                    name: name,
-                    expiration: expiration,
-                    qty: quantity,
-                    type: type,
-                    // idx: idx
-                  })
-                : addBuyItem({
-                    name: name,
-                    expiration: expiration,
-                    qty: quantity,
-                    type: type,
-                  })
-            }
-          >
-            add item
-          </button>
-        {/* </div>
-      </div> */}
+      <button
+        type="submit"
+        className="btn btn-danger float-end me-4"
+        id="submit"
+        onClick={() =>
+          list === "owned"
+            ? addInventoryItem({
+                title: name,
+                date: expiration,
+                quantity: quantity,
+                tags: type,
+              })
+            : addWishItem({
+                title: name,
+                date: dateNeeded,
+                quantity: quantity,
+                tags: type,
+              })
+        }
+      >
+        add item
+      </button>
     </div>
     //{" "}
   );

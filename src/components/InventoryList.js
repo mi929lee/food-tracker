@@ -1,4 +1,4 @@
-const OwnedList = ({ rows, deleteOwned }) => (
+const InventoryList = ({ rows, deleteInventoryItem }) => (
   <div>
     <h2>owned</h2>
     <table className="table table-hover">
@@ -12,11 +12,11 @@ const OwnedList = ({ rows, deleteOwned }) => (
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx} onClick={() => {deleteOwned(row.name)}}>
-            <td>{row.name}</td>
-            <td>{row.expiration}</td>
-            <td>{row.qty}</td>
-            <td>{row.type}</td>
+          <tr key={idx} onClick={() => {deleteInventoryItem(row.name)}}>
+            <td>{row.title}</td>
+            <td>{row.date}</td>
+            <td>{row.quantity}</td>
+            <td>{row.tags}</td>
           </tr>
         ))}
       </tbody>
@@ -24,4 +24,4 @@ const OwnedList = ({ rows, deleteOwned }) => (
   </div>
 );
 
-export default OwnedList;
+export default InventoryList;
