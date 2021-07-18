@@ -1,11 +1,11 @@
 const OwnedList = ({ rows, deleteOwned }) => (
   <div>
-    <h2 className="is-size-3 has-text-weight-semibold">owned</h2>
-    <table className="table is-hoverable">
+    <h2>owned</h2>
+    <table className="table table-hover">
       <thead>
         <tr>
           <th>name</th>
-          <th>expiration</th>
+          <th>expiration date</th>
           <th>qty</th>
           <th>type</th>
         </tr>

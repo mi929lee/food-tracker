@@ -1,8 +1,8 @@
 const Footer = () => (
-  <footer className="footer">
-    <div className="content">
-      <p>michelle and nicole, 2021</p>
-    </div>
+  <footer className="bg-success d-flex p-4">
+    
+      <p>copyright © 2021 michelle lee</p>
+    
   </footer>
 );
 

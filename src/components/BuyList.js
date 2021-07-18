@@ -1,11 +1,11 @@
 const BuyList = ({ rows, deleteBuy }) => (
   <div>
-    <h2 className="is-size-3 has-text-weight-semibold">need to buy</h2>
-    <table className="table is-hoverable">
+    <h2>need to buy</h2>
+    <table className="table table-hover">
       <thead>
         <tr>
           <th>name</th>
-          <th>expiration</th>
+          <th>date needed by</th>
           <th>qty</th>
           <th>type</th>
         </tr>

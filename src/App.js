@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Form from "./components/Form";
 import Header from "./components/Header";
 import OwnedList from "./components/OwnedList";
-import "bootstrap/dist/css/bootstrap.css";
+
 
 const App = () => {
   const [ownedItems, setOwnedItems] = useState([
@@ -12,22 +12,19 @@ const App = () => {
       name: "frosted flakes",
       expiration: "2021-06-31",
       qty: "1",
-      type: "snacks",
-      idx: 0
+      type: "snacks"
     },
     {
-      name: "cheerois",
+      name: "avocados",
       expiration: "2021-03-14",
-      qty: "9",
-      type: "snacks",
-      idx: 1
+      qty: "4",
+      type: "fruit"
     },
     {
-      name: "cheerois",
+      name: "eggs",
       expiration: "2021-03-14",
-      qty: "9",
-      type: "snacks",
-      idx: 2
+      qty: "72",
+      type: "dairy"
     },
   ]);
 
@@ -72,12 +69,12 @@ const App = () => {
     <div className="App">
       <Header />
       <Form addOwnedItem={addOwnedItem} addBuyItem={addBuyItem} />
-      <section className="section">
-        <div className="columns">
-          <div className="column">
+      <section className="container-fluid mt-4 mb-5">
+        <div className="row m-2">
+          <div className="col">
             <OwnedList rows={ownedItems} deleteOwned={deleteOwned} />
           </div>
-          <div className="column">
+          <div className="col">
             <BuyList rows={buyItems} deleteBuy={deleteBuy} />
           </div>
         </div>
