@@ -8,6 +8,7 @@ const InventoryList = ({ rows, deleteInventoryItem }) => (
           <th>expiration date</th>
           <th>qty</th>
           <th>type</th>
+          <th>location</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,7 @@ const InventoryList = ({ rows, deleteInventoryItem }) => (
             <td>{row.date}</td>
             <td>{row.quantity}</td>
             <td>{row.tags}</td>
+            <td>{row.location}</td>
           </tr>
         ))}
       </tbody>

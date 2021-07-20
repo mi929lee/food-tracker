@@ -22,7 +22,7 @@ const App = () => {
       quantity: "4",
       tags: "fruit",
       date: "2021-03-14",
-      location: "refrigerator",
+      location: "garage",
     },
     {
       id: Math.random(),
@@ -41,7 +41,7 @@ const App = () => {
       quantity: "1",
       tags: "snacks",
       person: "jacky",
-      location: "safeway"
+      location: "target"
     },
     {
       id: Math.random(),
@@ -49,7 +49,7 @@ const App = () => {
       quantity: "2",
       tags: "snacks",
       person: "nicole",
-      location: "safeway"
+      location: "costco"
     },
     {
       id: Math.random(),
