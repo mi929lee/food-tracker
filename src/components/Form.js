@@ -2,7 +2,7 @@ import { useState } from "react";
 import InventoryForm from "./InventoryForm";
 import WishForm from "./WishForm";
 
-const Form = ({ addInventoryItem, addWishItem }) => {
+const Form = ({ addInventoryItem, inventoryList, addWishItem, wishList }) => {
   const [list, setList] = useState("wish list");
 
   return (
@@ -12,16 +12,25 @@ const Form = ({ addInventoryItem, addWishItem }) => {
           <h2 className="my-4">add new item</h2>
         </div>
         <div className="col-2 my-4">
-          <button className="btn" onClick={(e) => setList("wish list")}>wish list</button>
-          <button className="btn" onClick={(e) => setList("inventory")}>inventory</button>
+          <button className="btn" onClick={(e) => setList("wish list")}>
+            wish list
+          </button>
+          <button className="btn" onClick={(e) => setList("inventory")}>
+            inventory
+          </button>
         </div>
       </div>
 
       {list === "inventory" && (
-        <InventoryForm addInventoryItem={addInventoryItem} />
+        <InventoryForm
+          addInventoryItem={addInventoryItem}
+          inventoryList={inventoryList}
+        />
       )}
 
-      {list === "wish list" && <WishForm addWishItem={addWishItem} />}
+      {list === "wish list" && (
+        <WishForm addWishItem={addWishItem} wishList={wishList} />
+      )}
     </div>
   );
 };

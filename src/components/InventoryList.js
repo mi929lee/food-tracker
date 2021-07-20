@@ -12,7 +12,7 @@ const InventoryList = ({ rows, deleteInventoryItem }) => (
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx} onClick={() => {deleteInventoryItem(row.name)}}>
+          <tr key={idx} onClick={() => {deleteInventoryItem(row.id)}}>
             <td>{row.title}</td>
             <td>{row.date}</td>
             <td>{row.quantity}</td>

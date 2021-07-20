@@ -5,16 +5,16 @@ const WishList = ({ rows, deleteWishItem }) => (
       <thead>
         <tr>
           <th>name</th>
-          <th>date needed by</th>
+          <th>who wants</th>
           <th>qty</th>
           <th>type</th>
         </tr>
       </thead>
       <tbody>
         {rows.map((row, idx) => (
-          <tr key={idx} onClick={() => {deleteWishItem(row.name)}}>
+          <tr key={idx} onClick={() => {deleteWishItem(row.id)}}>
             <td>{row.title}</td>
-            <td>{row.date}</td>
+            <td>{row.person}</td>
             <td>{row.quantity}</td>
             <td>{row.tags}</td>
           </tr>

@@ -1,29 +1,44 @@
 import { useState } from "react";
 import FormItem from "./FormItem";
 
-const InventoryForm = ({ addInventoryItem }) => {
-  const [list, setList] = useState("need to buy");
+const InventoryForm = ({ addInventoryItem, inventoryList }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [quantity, setQuantity] = useState("");
   const [tags, setTags] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title) return;
+
+    if (!title) {
+      setError("please enter the name of the item");
+      return;
+    }
+    // if (inventoryList[title] == title) {
+    //   setError("'" + title + "' already exists in inventory");
+    //   return;
+    // }
     addInventoryItem({
       id: Math.random(),
-      title: title,
-      date: date,
-      quantity: quantity,
-      tags: tags,
+      title,
+      quantity,
+      tags,
+      date,
+      location,
     });
+
+    setTitle("");
+    setQuantity("");
+    setTags("");
+    setDate("");
+    setLocation("");
   };
 
   return (
-    <div id="inventoryForm">
+    <form id="inventory-form" onSubmit={handleSubmit}>
       <div className="row mx-2">
         <div className="col">
           <FormItem
@@ -31,6 +46,7 @@ const InventoryForm = ({ addInventoryItem }) => {
             placeholder="ex: cheerios"
             id="name"
             handleChange={setTitle}
+            state={title}
           />
         </div>
         <div className="col">
@@ -39,6 +55,7 @@ const InventoryForm = ({ addInventoryItem }) => {
             placeholder="ex: 2"
             id="quantity"
             handleChange={setQuantity}
+            state={quantity}
           />
         </div>
       </div>
@@ -50,15 +67,21 @@ const InventoryForm = ({ addInventoryItem }) => {
             placeholder="ex: snacks"
             id="type"
             handleChange={setTags}
+            state={tags}
           />
         </div>
         <div className="col">
-          <FormItem
-            title="expiration date"
-            placeholder="ex: 2022-05-31"
-            id="expiration"
-            handleChange={setDate}
-          />
+          <div className="input-group mb-3">
+            <span className="input-group-text">expiration date</span>
+            <input
+              className="form-control"
+              type="date"
+              placeholder="ex: 2022-05-31"
+              id="expiration"
+              onChange={(e) => setDate(e.target.value)}
+              state={date}
+            />
+          </div>
         </div>
       </div>
 
@@ -69,6 +92,7 @@ const InventoryForm = ({ addInventoryItem }) => {
             placeholder="ex: in front of the white TV"
             id="location"
             handleChange={setLocation}
+            state={location}
           />
         </div>
         <div className="col">
@@ -87,26 +111,22 @@ const InventoryForm = ({ addInventoryItem }) => {
             placeholder="ex: get the family size"
             id="notes"
             handleChange={setDescription}
+            state={description}
           />
         </div>
       </div>
 
       <button
         type="submit"
-        className="btn btn-danger float-end me-4"
+        className="btn btn-primary float-end me-4"
         id="submit"
-        onClick={() =>
-          addInventoryItem({
-            title: title,
-            date: date,
-            quantity: quantity,
-            tags: tags,
-          })
-        }
       >
         add to inventory
       </button>
-    </div>
+      <p className="text-danger p-2 me-2 float-end">
+        <strong>{error}</strong>
+      </p>
+    </form>
   );
 };
 

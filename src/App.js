@@ -5,62 +5,74 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import InventoryList from "./components/InventoryList";
 
-
 const App = () => {
   const [inventoryList, setInventoryList] = useState([
     {
+      id: Math.random(),
       title: "frosted flakes",
-      date: "2021-06-31",
       quantity: "1",
-      tags: "snacks"
+      tags: "snacks",
+      date: "2021-06-31",
+      location: "in front of tv",
+      
     },
     {
+      id: Math.random(),
       title: "avocados",
-      date: "2021-03-14",
       quantity: "4",
-      tags: "fruit"
+      tags: "fruit",
+      date: "2021-03-14",
+      location: "refrigerator",
     },
     {
+      id: Math.random(),
       title: "eggs",
-      date: "2021-03-14",
       quantity: "72",
-      tags: "dairy"
+      tags: "dairy",
+      date: "2021-03-14",
+      location: "refrigerator",
     },
   ]);
 
   const [wishList, setWishList] = useState([
     {
+      id: Math.random(),
       title: "cocoa puffs",
-      date: "2021-06-31",
       quantity: "1",
       tags: "snacks",
+      person: "jacky",
+      location: "safeway"
     },
     {
+      id: Math.random(),
       title: "lucky charms",
-      date: "2021-03-14",
       quantity: "2",
       tags: "snacks",
+      person: "nicole",
+      location: "safeway"
     },
     {
+      id: Math.random(),
       title: "oreo o's",
-      date: "2021-08-28",
-      quantity: "5",
+      quantity: "1",
       tags: "snacks",
+      person: "michelle",
+      location: "safeway"
     },
   ]);
 
   const addInventoryItem = (row) => setInventoryList([...inventoryList, row]);
   const addWishItem = (row) => setWishList([...wishList, row]);
 
-  const deleteInventoryItem = (title) => {
-    const rows = inventoryList.filter(item => {
-      return title !== item.title
+  const deleteInventoryItem = (id) => {
+    const rows = inventoryList.filter((item) => {
+      return id !== item.id;
     });
     setInventoryList(rows);
   };
-  const deleteWishItem = (title) => {
-    const rows = wishList.filter(item => {
-      return title !== item.title
+  const deleteWishItem = (id) => {
+    const rows = wishList.filter((item) => {
+      return id !== item.id;
     });
     setWishList(rows);
   };
@@ -68,11 +80,19 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Form addInventoryItem={addInventoryItem} addWishItem={addWishItem} />
-      <section className="container-fluid mt-4 mb-5">
+      <Form
+        addInventoryItem={addInventoryItem}
+        inventoryList={inventoryList}
+        addWishItem={addWishItem}
+        wishList={wishList}
+      />
+      <section className="container-fluid mt-5 mb-5">
         <div className="row m-2">
           <div className="col">
-            <InventoryList rows={inventoryList} deleteInventoryItem={deleteInventoryItem} />
+            <InventoryList
+              rows={inventoryList}
+              deleteInventoryItem={deleteInventoryItem}
+            />
           </div>
           <div className="col">
             <WishList rows={wishList} deleteWishItem={deleteWishItem} />
