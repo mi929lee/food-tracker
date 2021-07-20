@@ -1,6 +1,6 @@
 const WishList = ({ rows, deleteWishItem }) => (
   <div>
-    <h2>need to buy</h2>
+    <h2>wish list</h2>
     <table className="table table-hover">
       <thead>
         <tr>

@@ -1,6 +1,6 @@
 const InventoryList = ({ rows, deleteInventoryItem }) => (
   <div>
-    <h2>owned</h2>
+    <h2>inventory</h2>
     <table className="table table-hover">
       <thead>
         <tr>
