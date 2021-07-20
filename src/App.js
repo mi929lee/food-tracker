@@ -98,7 +98,9 @@ const App = () => {
             <WishList rows={wishList} deleteWishItem={deleteWishItem} />
           </div>
         </div>
+        <a href="#" className="btn float-end bg-info pb-1 pt-2 rounded-pill">^</a>
       </section>
+      <br />
       <Footer />
     </div>
   );
