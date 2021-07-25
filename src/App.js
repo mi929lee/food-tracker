@@ -14,7 +14,6 @@ const App = () => {
       tags: "snacks",
       date: "2021-06-31",
       location: "in front of tv",
-      
     },
     {
       id: Math.random(),
@@ -41,7 +40,7 @@ const App = () => {
       quantity: "1",
       tags: "snacks",
       person: "jacky",
-      location: "target"
+      location: "target",
     },
     {
       id: Math.random(),
@@ -49,7 +48,7 @@ const App = () => {
       quantity: "2",
       tags: "snacks",
       person: "nicole",
-      location: "costco"
+      location: "costco",
     },
     {
       id: Math.random(),
@@ -57,7 +56,7 @@ const App = () => {
       quantity: "1",
       tags: "snacks",
       person: "michelle",
-      location: "safeway"
+      location: "safeway",
     },
   ]);
 
@@ -98,7 +97,9 @@ const App = () => {
             <WishList rows={wishList} deleteWishItem={deleteWishItem} />
           </div>
         </div>
-        <a href="#" className="btn float-end bg-info pb-1 pt-2 rounded-pill">^</a>
+        <a href="#" className="btn float-end bg-info pb-1 pt-2 rounded-pill">
+          ^
+        </a>
       </section>
       <br />
       <Footer />
