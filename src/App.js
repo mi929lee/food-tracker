@@ -116,7 +116,6 @@ const App = () => {
       .get()
       .then((querySnapshot) => {
         const list = [];
-        // const date = doc.data().date.toDate().toDateString();
         querySnapshot.forEach((doc) => {
           list.push({
             id: doc.id,

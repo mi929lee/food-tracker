@@ -1,5 +1,7 @@
 import { useState } from "react";
 import FormItem from "./FormItem";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const WishForm = ({ addWishItem, wishList }) => {
   const [title, setTitle] = useState("");
@@ -31,13 +33,51 @@ const WishForm = ({ addWishItem, wishList }) => {
       description,
     });
 
-    setTitle("");
-    setQuantity(0);
-    setTags("");
-    setPerson("");
-    setLocation("");
-    setDescription("");
-    setError("");
+    firebase
+      .firestore()
+      .collection("WishList")
+      .add({
+        title,
+        quantity: parseInt(quantity),
+        tags: tags ? tags.split(" ") : [],
+        person,
+        location,
+        description,
+      })
+      .then(() => {
+        setTitle("");
+        setQuantity(0);
+        setTags("");
+        setPerson("");
+        setLocation("");
+        setDescription("");
+        setError("");
+      });
+
+    // const firestore = firebase.firestore();
+    // const temp = firestore.collection("InventoryList");
+
+    // temp.get().then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     console.log(doc.id);
+    //     console.log(doc.data());
+    //   });
+    // });
+
+    // temp.add({
+    //   title: "avocados",
+    //   quantity: "4",
+    //   tags: "fruit",
+    //   date: "2021-03-14",
+    //   location: "garage",
+    //   description: "hello",
+    // })
+    // .then((docRef) => {
+    //   console.log('document written with ID ', docRef.id);
+    // })
+    // .catch((error) => {
+    //   console.error('error adding document ', error);
+    // });
   };
 
   return (

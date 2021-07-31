@@ -1,5 +1,7 @@
 import { useState } from "react";
 import FormItem from "./FormItem";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const InventoryForm = ({ addInventoryItem, inventoryList }) => {
   const [title, setTitle] = useState("");
@@ -31,13 +33,26 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
       description,
     });
 
-    setTitle("");
-    setQuantity(0);
-    setTags("");
-    setDate("");
-    setLocation("");
-    setDescription("");
-    setError("");
+    firebase
+      .firestore()
+      .collection("InventoryList")
+      .add({
+        title,
+        quantity: parseInt(quantity),
+        tags: tags ? tags.split(" ") : [],
+        date,
+        location,
+        description,
+      })
+      .then(() => {
+        setTitle("");
+        setQuantity(0);
+        setTags("");
+        setDate("");
+        setLocation("");
+        setDescription("");
+        setError("");
+      });
   };
 
   return (
