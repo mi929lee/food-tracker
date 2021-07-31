@@ -19,19 +19,6 @@ const WishForm = ({ addWishItem, wishList }) => {
       setError("please enter the name of the item");
       return;
     }
-    // if (Object.values(wishList).indexOf(title) > -1) {
-    //   setError("'" + title + "' already exists in your wish list");
-    //   return;
-    // }
-    addWishItem({
-      id: Math.random(),
-      title,
-      quantity: quantity && parseInt(quantity) > 0 ? parseInt(quantity) : 0,
-      tags: tags ? tags.split(" ") : [],
-      person,
-      location,
-      description,
-    });
 
     firebase
       .firestore()
@@ -53,31 +40,6 @@ const WishForm = ({ addWishItem, wishList }) => {
         setDescription("");
         setError("");
       });
-
-    // const firestore = firebase.firestore();
-    // const temp = firestore.collection("InventoryList");
-
-    // temp.get().then((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     console.log(doc.id);
-    //     console.log(doc.data());
-    //   });
-    // });
-
-    // temp.add({
-    //   title: "avocados",
-    //   quantity: "4",
-    //   tags: "fruit",
-    //   date: "2021-03-14",
-    //   location: "garage",
-    //   description: "hello",
-    // })
-    // .then((docRef) => {
-    //   console.log('document written with ID ', docRef.id);
-    // })
-    // .catch((error) => {
-    //   console.error('error adding document ', error);
-    // });
   };
 
   return (

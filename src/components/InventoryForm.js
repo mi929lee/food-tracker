@@ -19,19 +19,6 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
       setError("please enter the name of the item");
       return;
     }
-    // if (inventoryList[title] == title) {
-    //   setError("'" + title + "' already exists in inventory");
-    //   return;
-    // }
-    addInventoryItem({
-      id: Math.random(),
-      title,
-      quantity: quantity && parseInt(quantity) > 0 ? parseInt(quantity) : 0,
-      tags: tags ? tags.split(" ") : [],
-      date,
-      location,
-      description,
-    });
 
     firebase
       .firestore()
@@ -40,7 +27,7 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
         title,
         quantity: parseInt(quantity),
         tags: tags ? tags.split(" ") : [],
-        date,
+        date: new Date(date),
         location,
         description,
       })
