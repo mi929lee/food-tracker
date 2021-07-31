@@ -3,7 +3,7 @@ import FormItem from "./FormItem";
 
 const WishForm = ({ addWishItem, wishList }) => {
   const [title, setTitle] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [location, setLocation] = useState("");
   const [tags, setTags] = useState("");
   const [person, setPerson] = useState("");
@@ -24,18 +24,20 @@ const WishForm = ({ addWishItem, wishList }) => {
     addWishItem({
       id: Math.random(),
       title,
-      quantity,
-      tags,
+      quantity: quantity && parseInt(quantity) > 0 ? parseInt(quantity) : 0,
+      tags: tags ? tags.split(" ") : [],
       person,
       location,
+      description,
     });
 
     setTitle("");
-    setQuantity("");
+    setQuantity(0);
     setTags("");
     setPerson("");
     setLocation("");
     setDescription("");
+    setError("");
   };
 
   return (
@@ -51,13 +53,17 @@ const WishForm = ({ addWishItem, wishList }) => {
           />
         </div>
         <div className="col">
-          <FormItem
-            title="quantity"
-            placeholder="ex: 2"
-            id="quantity"
-            handleChange={setQuantity}
-            state={quantity}
-          />
+          <div className="input-group mb-3">
+            <span className="input-group-text">quantity</span>
+            <input
+              className="form-control"
+              type="number"
+              placeholder="ex: 2"
+              id="quantity"
+              onChange={(e) => setQuantity(e.target.value)}
+              value={quantity}
+            />
+          </div>
         </div>
       </div>
 

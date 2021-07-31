@@ -4,7 +4,7 @@ import FormItem from "./FormItem";
 const InventoryForm = ({ addInventoryItem, inventoryList }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [tags, setTags] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -24,17 +24,20 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
     addInventoryItem({
       id: Math.random(),
       title,
-      quantity,
-      tags,
+      quantity: quantity && parseInt(quantity) > 0 ? parseInt(quantity) : 0,
+      tags: tags ? tags.split(" ") : [],
       date,
       location,
+      description,
     });
 
     setTitle("");
-    setQuantity("");
+    setQuantity(0);
     setTags("");
     setDate("");
     setLocation("");
+    setDescription("");
+    setError("");
   };
 
   return (
@@ -50,13 +53,17 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
           />
         </div>
         <div className="col">
-          <FormItem
-            title="quantity"
-            placeholder="ex: 2"
-            id="quantity"
-            handleChange={setQuantity}
-            state={quantity}
-          />
+          <div className="input-group mb-3">
+            <span className="input-group-text">quantity</span>
+            <input
+              className="form-control"
+              type="number"
+              placeholder="ex: 2"
+              id="quantity"
+              onChange={(e) => setQuantity(e.target.value)}
+              value={quantity}
+            />
+          </div>
         </div>
       </div>
 
@@ -79,7 +86,7 @@ const InventoryForm = ({ addInventoryItem, inventoryList }) => {
               placeholder="ex: 2022-05-31"
               id="expiration"
               onChange={(e) => setDate(e.target.value)}
-              state={date}
+              value={date}
             />
           </div>
         </div>
